@@ -1,10 +1,12 @@
 import React from "react";
+import ProfileComponent from "../components/ProfileComponent";
+import ProjectListComponent from "../components/ProjectListComponent";
 
 export default function Profile() {
   return (
     <div>
-      <div>Profile</div>
-      <div>Project list</div>
+      <ProfileComponent />
+      <ProjectListComponent />
     </div>
   );
 }
