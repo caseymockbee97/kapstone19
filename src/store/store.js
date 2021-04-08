@@ -9,7 +9,7 @@ const initialState = {
     {
       userName: ["casey"],
       projectTitle: "Casey's Project",
-      columnNames: [{ name: "column1", newTodo: "" }],
+      columnNames: [{ name: "column1", id: "123456" }],
       todos: [
         {
           text: "Delete Me!",
@@ -24,9 +24,9 @@ const initialState = {
       userName: ["casey", "marc"],
       projectTitle: "combo Project",
       columnNames: [
-        { name: "column1", newTodo: "" },
-        { name: "column2", newTodo: "" },
-        { name: "column3", newTodo: "" },
+        { name: "column1", id: "234567" },
+        { name: "column2", id: "345678" },
+        { name: "column3", id: "456789" },
       ],
       todos: [
         {
@@ -56,9 +56,9 @@ const initialState = {
     userName: ["casey", "marc"],
     projectTitle: "combo Project",
     columnNames: [
-      { name: "column1", newTodo: "" },
-      { name: "column2", newTodo: "" },
-      { name: "column3", newTodo: "" },
+      { name: "column1", id: "234567" },
+      { name: "column2", id: "345678" },
+      { name: "column3", id: "456789" },
     ],
     todos: [
       {
