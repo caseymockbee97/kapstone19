@@ -4,10 +4,12 @@ import Login from "./views/Login";
 import Profile from "./views/Profile";
 import ProjectBoard from "./views/ProjectBoard";
 import NavBar from "./components/NavBar";
+import "./App.css"
 
 function App() {
   return (
     <>
+    <div className="main">
       <NavBar />
       <Switch>
         {/* <Route path="/logout">
@@ -23,6 +25,7 @@ function App() {
           <Login />
         </Route>
       </Switch>
+      </div>
     </>
   );
 }

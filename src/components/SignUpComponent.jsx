@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import {Button, Form } from 'semantic-ui-react'
+import '../assets/create.css'
 
 export default function SignUpComponent() {
   const [userName, setUserName] = useState("");
@@ -19,29 +21,40 @@ export default function SignUpComponent() {
     setPassword2("");
   };
   return (
-    <div>
-      <form>
+    <div id="create">
+      <h1>Sign-Up</h1>
+      <Form>
+      <Form.Field>
+      <label>Username</label>
         <input
           type="text"
           placeholder="User Name"
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
         ></input>
+        </Form.Field>
+        <Form.Field>
+        <label>Password</label>
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         ></input>
+          </Form.Field>
+          <Form.Field>
+          <label>Confirm Password</label>
         <input
           type="password"
           placeholder="Confirm Password"
           value={password2}
           onChange={(e) => setPassword2(e.target.value)}
         ></input>
+        </Form.Field>
         {passwordError && passwordError}
-        <button onClick={handleLogin}>Sign Up</button>
-      </form>
+        <div  id="button"><Button onClick={handleLogin}>Sign Up</Button></div>
+      </Form>
+      <hr/>
     </div>
   );
 }
