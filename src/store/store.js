@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import create from "zustand";
 import { devtools } from "zustand/middleware";
 import { db } from "../dummyDb/dummyDb";
@@ -32,6 +33,16 @@ export const useStore = create(
         todoProjectBoards: projects,
         currentProject: tempCurrentProject,
       });
+      alert("Your sign in was a success.");
+    },
+    storeHandleSignUp: (username, password) => {
+      if (db.users.some((user) => user.username === username)) {
+        alert("That user already exists!");
+        return;
+      }
+      db.users.push({ username: username, password: password });
+      get().storeCreateNewProject(username);
+      alert("Your account has been created!");
     },
     storeSetCurrentProject: (projectId) => {
       const currentProject = get().todoProjectBoards.find(
@@ -50,6 +61,24 @@ export const useStore = create(
           },
         });
       }
+    },
+    storeCreateNewProject: (userName, title) => {
+      const projectTitle = title ? title : `${userName}'s Project`;
+      const newProject = {
+        userName: [userName],
+        projectTitle: projectTitle,
+        columnNames: [{ name: "Change Me!", id: nanoid() }],
+        todos: [
+          {
+            text: "Delete Me!",
+            id: nanoid(),
+            completed: false,
+            columnPosition: 0,
+          },
+        ],
+        projectId: nanoid(),
+      };
+      db.projects.push(newProject);
     },
   }))
 );
