@@ -6,6 +6,8 @@ import AddUserComponent from "../components/AddUserComponent";
 import CompletedColumnComponent from "../components/CompletedColumnComponent";
 import TodoColumnComponent from "../components/TodoColumnComponent";
 import { useStore } from "../store/store";
+import { Button } from "semantic-ui-react"
+import "../assets/projectboard.css"
 
 export default function ProjectBoard() {
   // useStore
@@ -47,7 +49,7 @@ export default function ProjectBoard() {
     setIsAddUserClicked((prev) => !prev);
   };
   return (
-    <div>
+    <div id="box">
       {!currentProject.projectTitle && (
         <h1>
           Oops, looks like something went wrong on our side. Head back your
@@ -57,9 +59,9 @@ export default function ProjectBoard() {
       {currentProject.projectTitle && (
         <>
           <h1>{currentProject.projectTitle}</h1>
-          <button onClick={addTodoButton}>New Todo</button>
-          <button onClick={addColumnButton}> New Column </button>
-          <button onClick={addUserButton}> Add User </button>
+          <Button onClick={addTodoButton}>New Todo</Button>
+          <Button onClick={addColumnButton}> New Column </Button>
+          <Button onClick={addUserButton}> Add User </Button>
           {isNewTodoClicked && (
             <AddTodoComponent addTodoButton={addTodoButton} />
           )}
@@ -69,7 +71,7 @@ export default function ProjectBoard() {
           {isAddUserClicked && (
             <AddUserComponent addUserButton={addUserButton} />
           )}
-          <div style={{ display: "flex" }}>
+          <div className="columns"style={{ display: "flex" }}>
             {currentProject.columnNames.map((obj, i) => (
               <TodoColumnComponent
                 key={`${obj.name}${i}`}
