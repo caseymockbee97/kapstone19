@@ -20,7 +20,7 @@ export const db = {
     {
       userName: ["casey"],
       projectTitle: "Casey's Project",
-      columnNames: [{ name: "column1", newTodo: "" }],
+      columnNames: [{ name: "column1", id: "SHitvcADEy" }],
       todos: [
         {
           text: "Delete Me!",
@@ -40,7 +40,7 @@ export const db = {
     {
       userName: ["marc"],
       projectTitle: "Marc's Project",
-      columnNames: [{ name: "around the house", newTodo: "" }],
+      columnNames: [{ name: "around the house", id: "wvRLOyzVSW" }],
       todos: [
         {
           text: "Delete Me!",
@@ -61,9 +61,9 @@ export const db = {
       userName: ["casey", "marc"],
       projectTitle: "combo Project",
       columnNames: [
-        { name: "column1", newTodo: "" },
-        { name: "column2", newTodo: "" },
-        { name: "column3", newTodo: "" },
+        { name: "column1", id: "CwVhtPwRGi" },
+        { name: "column2", id: "hGqEtbAYxi" },
+        { name: "column3", id: "GADADDbQJX" },
       ],
       todos: [
         {
