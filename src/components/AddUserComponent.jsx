@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useStore } from "../store/store";
-
+import "../assets/add.css"
+import { Button, Input } from "semantic-ui-react"
 export default function AddUserComponent(props) {
   const { userName } = useStore((state) => state.currentProject);
   const [newUser, setNewUser] = useState("");
@@ -12,16 +13,18 @@ export default function AddUserComponent(props) {
     props.addUserButton();
   };
   return (
-    <div>
+    <div id="box">
       <form onSubmit={handleClick}>
-        <input
+        <Input
+          id="newinput"
           value={newUser}
           onChange={(e) => setNewUser(e.target.value)}
           placeholder="Add New User"
         />
 
-        <button onClick={props.addUserButton}>Cancel</button>
-        <button onClick={handleClick}>Submit</button>
+        <Button onClick={handleClick} positive>Submit</Button>
+        <Button onClick={props.addUserButton} negative>Cancel</Button>
+
       </form>
     </div>
   );

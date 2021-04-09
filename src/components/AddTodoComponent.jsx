@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useStore } from "../store/store";
+import "../assets/add.css"
+import { Button, Input } from "semantic-ui-react"
 
 export default function AddTodoComponent(props) {
   const { columnNames } = useStore((state) => state.currentProject);
@@ -13,9 +15,10 @@ export default function AddTodoComponent(props) {
     props.addTodoButton();
   };
   return (
-    <div>
+    <div id="box">
       <form>
-        <input
+        <Input
+          id="newinput"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
           placeholder="New Todo"
@@ -29,12 +32,13 @@ export default function AddTodoComponent(props) {
               value={obj.name}
               onChange={(e) => setColumn(e.target.value)}
             />
-            <label htmlFor={obj.name}>{obj.name}</label>
+            <label id="checklabel" htmlFor={obj.name}>{obj.name}</label>
           </span>
         ))}
 
-        <button onClick={props.addTodoButton}>Cancel</button>
-        <button onClick={handleClick}>Submit</button>
+        <Button onClick={handleClick} positive>Submit</Button>
+        <Button onClick={props.addTodoButton} negative>Cancel</Button>
+
       </form>
     </div>
   );

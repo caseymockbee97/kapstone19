@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useStore } from "../store/store";
+import "../assets/add.css"
+import { Button, Input } from "semantic-ui-react"
 
 export default function AddColumnComponent(props) {
   const { columnNames } = useStore((state) => state.currentProject);
@@ -18,16 +20,18 @@ export default function AddColumnComponent(props) {
     props.addColumnButton();
   };
   return (
-    <div>
+    <div id="box">
       <form onSubmit={handleClick}>
-        <input
+        <Input
+          id="newinput"
           value={newColumn}
           onChange={(e) => setNewColumn(e.target.value)}
           placeholder="New Column"
         />
 
-        <button onClick={props.addColumnButton}>Cancel</button>
-        <button onClick={handleClick}>Submit</button>
+
+        <Button className="button" onClick={handleClick} positive>Submit</Button>
+        <Button className="button" onClick={props.addColumnButton} negative>Cancel</Button>
       </form>
     </div>
   );
