@@ -26,7 +26,12 @@ export const useStore = create(
       let projects = db.projects.filter((project) =>
         project.userName.includes(user)
       );
-      set({ user: username, todoProjectBoards: projects });
+      let tempCurrentProject = projects[0];
+      set({
+        user: username,
+        todoProjectBoards: projects,
+        currentProject: tempCurrentProject,
+      });
     },
     storeSetCurrentProject: (projectId) => {
       const currentProject = get().todoProjectBoards.find(
