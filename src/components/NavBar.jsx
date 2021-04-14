@@ -8,18 +8,28 @@ export default function NavBar() {
   const projectId = useStore((state) => state.currentProject.projectId);
   return (
     <div id="bar">
-      <Button.Group>
+      <div id="log">
         <Link to="/">
           <Button>Login</Button>
         </Link>
+      </div>
+    <div id="bb">
+      <Button.Group>
         <Link to="/profile">
-          <Button>Profile</Button>
+          <Button class="ui button">Profile</Button>
         </Link>
-
         <Link to={"/projectBoard/" + projectId}>
-          <Button>ProjectBoard</Button>
+          <Button class="ui button">ProjectBoard</Button>
         </Link>
-      </Button.Group>
+        <Link to="/about">
+          <Button class="ui button">About Us</Button>
+        </Link>      </Button.Group>
+    </div>
+      <div id="logout">
+        <Link to="/login">
+          <Button negative>LOGOUT</Button>
+        </Link>
+      </div>
     </div>
   );
 }
