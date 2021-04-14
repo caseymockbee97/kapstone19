@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useStore } from "../store/store";
-import "../assets/addcolumn.css"
-import { Button, Input } from "semantic-ui-react"
+import "../assets/addcolumn.css";
+import { Button, Input } from "semantic-ui-react";
 
 export default function AddColumnComponent(props) {
-  const { columnNames } = useStore((state) => state.currentProject);
+  const { columnNames, projectId } = useStore((state) => state.currentProject);
+  const storeAddNewColumn = useStore((state) => state.storeAddNewColumn);
   const [newColumn, setNewColumn] = useState("");
   const handleClick = (e) => {
     e.preventDefault();
@@ -15,7 +16,7 @@ export default function AddColumnComponent(props) {
       newColumn.toLowerCase() !== "completed" &&
       newColumn
     ) {
-      console.log(newColumn);
+      storeAddNewColumn(projectId, newColumn);
     }
     props.addColumnButton();
   };
@@ -28,8 +29,12 @@ export default function AddColumnComponent(props) {
           onChange={(e) => setNewColumn(e.target.value)}
           placeholder="New Column"
         />
-        <Button className="button" onClick={handleClick} positive>Submit</Button>
-        <Button className="button" onClick={props.addColumnButton} negative>Cancel</Button>
+        <Button className="button" onClick={handleClick} positive>
+          Submit
+        </Button>
+        <Button className="button" onClick={props.addColumnButton} negative>
+          Cancel
+        </Button>
       </form>
     </div>
   );
