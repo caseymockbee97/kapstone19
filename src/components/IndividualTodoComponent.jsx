@@ -1,13 +1,14 @@
 import React from "react";
+import { Button } from "semantic-ui-react"
 
 export default function IndividualTodoComponent(props) {
   const { text, id, completed, columnPosition } = props.todo;
   return (
-    <div style={{ border: "1px solid black" }}>
-      <p>{text}</p>
-      {!completed && <button>Delete</button>}
-      {!completed && <button>Edit</button>}
-      <button>{completed ? "unDone" : "Done"}</button>
+    <div id="itc">
+      <div id="tt">{text}</div>
+      {!completed && <Button>Edit</Button>}<br/>
+      {!completed && <Button negative>Delete</Button>}
+      <Button positive>{completed ? "unDone" : "Done"}</Button>
     </div>
   );
 }

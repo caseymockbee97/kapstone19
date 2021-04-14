@@ -1,13 +1,14 @@
 import React from "react";
 import { useStore } from "../store/store";
 import IndividualTodoComponent from "./IndividualTodoComponent";
+import "../assets/projectboard.css"
 
 export default function CompletedColumnComponent() {
   const todos = useStore((state) => state.currentProject.todos);
   return (
-    <div style={{ border: "1px solid blue", width: "200px", height: "500px"}}>
+    <div className="outside">
       <h2>Completed</h2>
-      <div style={{ border: "1px solid red", width: "190px", height: "400px" }}>
+      <div className="inside">
         {todos
           .filter((obj) => obj.completed)
           .map((obj) => (

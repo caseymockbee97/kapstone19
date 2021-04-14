@@ -20,10 +20,10 @@ export const db = {
     {
       userName: ["casey"],
       projectTitle: "Casey's Project",
-      columnNames: [{ name: "column1", id: "SHitvcADEy" }],
+      columnNames: [{ name: "column1", id: "SHitvcADEy" }, { name: "column2", id: "SHotvcADEy" }],
       todos: [
         {
-          text: "Delete Me!",
+          text: "Delete Me!wqewqewqqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweq",
           id: "VkYqK0kqEkWW9ubO87rdC",
           completed: false,
           columnPosition: 0,
