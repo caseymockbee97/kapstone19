@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useStore } from "../store/store";
-import "../assets/add.css"
+import "../assets/addcolumn.css"
 import { Button, Input } from "semantic-ui-react"
 
 export default function AddTodoComponent(props) {

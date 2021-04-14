@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useStore } from "../store/store";
-import "../assets/add.css"
+import "../assets/addcolumn.css"
 import { Button, Input } from "semantic-ui-react"
 
 export default function AddColumnComponent(props) {
@@ -28,8 +28,6 @@ export default function AddColumnComponent(props) {
           onChange={(e) => setNewColumn(e.target.value)}
           placeholder="New Column"
         />
-
-
         <Button className="button" onClick={handleClick} positive>Submit</Button>
         <Button className="button" onClick={props.addColumnButton} negative>Cancel</Button>
       </form>

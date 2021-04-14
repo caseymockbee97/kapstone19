@@ -57,7 +57,7 @@ export default function ProjectBoard() {
         </h1>
       )}
       {currentProject.projectTitle && (
-        <>
+        <div id="container">
           <h1>{currentProject.projectTitle}</h1>
           <Button onClick={addTodoButton}>New Todo</Button>
           <Button onClick={addColumnButton}> New Column </Button>
@@ -81,7 +81,7 @@ export default function ProjectBoard() {
             ))}
             <CompletedColumnComponent />
           </div>
-        </>
+        </div>
       )}
     </div>
   );

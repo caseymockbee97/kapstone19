@@ -1,13 +1,15 @@
 import React from "react";
 import { useStore } from "../store/store";
 import IndividualTodoComponent from "./IndividualTodoComponent";
+import "../assets/projectboard.css"
+import { Button } from "semantic-ui-react"
 
 export default function TodoColumnComponent(props) {
   const todos = useStore((state) => state.currentProject.todos);
   return (
-    <div style={{ border: "1px solid blue", width: "200px", height: "500px" }}>
+    <div className="outside">
       <h2>{props.name}</h2>
-      <div style={{ border: "1px solid red", width: "190px", height: "400px" }}>
+      <div className="inside">
         {todos
           .filter((obj) => !obj.completed)
           .filter((obj) => obj.columnPosition === props.columnPosition)
@@ -15,7 +17,7 @@ export default function TodoColumnComponent(props) {
             <IndividualTodoComponent key={obj.id} todo={obj} />
           ))}
       </div>
-      <button>Delete Column</button>
+      <div id="dc"><Button>Delete Column</Button></div>
     </div>
   );
 }
