@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 import create from "zustand";
 import { devtools } from "zustand/middleware";
 import { db } from "../dummyDb/dummyDb";
-
+const baseURL = "http://localhost:3000/";
 export const useStore = create(
   devtools((set, get) => ({
     // current users name
@@ -18,31 +18,82 @@ export const useStore = create(
       projectId: "",
     },
     storeHandleLogin: (username, password) => {
-      let userIndex = db.users.findIndex((user) => user.username === username);
-      if (userIndex === -1 || db.users[userIndex].password !== password) {
-        alert("username or password are incorrect");
-        return;
-      }
-      let user = username;
-      let projects = db.projects.filter((project) =>
-        project.userName.includes(user)
-      );
-      let tempCurrentProject = projects[0];
-      set({
-        user: username,
-        todoProjectBoards: projects,
-        currentProject: tempCurrentProject,
-      });
-      alert("Your sign in was a success.");
+      fetch(baseURL + "login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.statusCode < 300) {
+            set({
+              user: response.content.username,
+              todoProjectBoards: response.content.projects,
+              currentProject: response.content.currentProject
+                ? response.content.currentProject
+                : {
+                    userName: [],
+                    projectTitle: "",
+                    columnNames: [],
+                    todos: [],
+                    projectId: "",
+                  },
+            });
+            alert("Your sign in was a success");
+          } else {
+            alert(
+              `Error code: ${response.statusCode} \r\n ${response.message}`
+            );
+            throw new Error(`${response.message}`);
+          }
+        })
+        .catch((error) => console.log(error.message));
     },
     storeHandleSignUp: (username, password) => {
-      if (db.users.some((user) => user.username === username)) {
-        alert("That user already exists!");
-        return;
+      fetch(baseURL + "signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.statusCode < 300) {
+            alert(response.message);
+          } else {
+            alert(
+              `Error code: ${response.statusCode} \r\n ${response.message}`
+            );
+            throw new Error(`${response.message}`);
+          }
+        })
+        .catch((error) => console.log(error.message));
+    },
+    storeSetProjects: () => {
+      if (get().user) {
+        fetch(baseURL + "projects/" + get().user)
+          .then((res) => res.json())
+          .then((response) => {
+            if (response.statusCode < 300) {
+              set({ todoProjectBoards: response.content });
+            } else {
+              alert(
+                `Error code: ${response.statusCode} \r\n ${response.message}`
+              );
+              throw new Error(`${response.message}`);
+            }
+          })
+          .catch((error) => console.log(error.message));
       }
-      db.users.push({ username: username, password: password });
-      get().storeCreateNewProject(username);
-      alert("Your account has been created!");
     },
     storeSetCurrentProject: (projectId) => {
       const currentProject = get().todoProjectBoards.find(
@@ -62,23 +113,99 @@ export const useStore = create(
         });
       }
     },
-    storeCreateNewProject: (userName, title) => {
-      const projectTitle = title ? title : `${userName}'s Project`;
-      const newProject = {
-        userName: [userName],
-        projectTitle: projectTitle,
-        columnNames: [{ name: "Change Me!", id: nanoid() }],
-        todos: [
-          {
-            text: "Delete Me!",
-            id: nanoid(),
-            completed: false,
-            columnPosition: 0,
-          },
-        ],
-        projectId: nanoid(),
-      };
-      db.projects.push(newProject);
+    storeCreateNewProject: (title) => {
+      const projectTitle = title ? title : `${get().user}'s Project`;
+      fetch(baseURL + "projects/" + get().user, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: projectTitle,
+        }),
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.statusCode < 300) {
+            get().storeSetProjects();
+          } else {
+            alert(
+              `Error code: ${response.statusCode} \r\n ${response.message}`
+            );
+            throw new Error(`${response.message}`);
+          }
+        })
+        .catch((error) => console.log(error.message));
+    },
+    storeAddNewTodo: (projectId, text, columnPosition) => {
+      fetch(baseURL + "project/todo/" + projectId, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          text: text,
+          columnPosition: columnPosition,
+        }),
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.statusCode < 300) {
+            set({ currentProject: response.content });
+          } else {
+            alert(
+              `Error code: ${response.statusCode} \r\n ${response.message}`
+            );
+            throw new Error(`${response.message}`);
+          }
+        })
+        .catch((error) => console.log(error.message));
+    },
+    storeAddNewColumn: (projectId, columnTitle) => {
+      fetch(baseURL + "project/column/" + projectId, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          columnTitle: columnTitle,
+        }),
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.statusCode < 300) {
+            set({ currentProject: response.content });
+          } else {
+            alert(
+              `Error code: ${response.statusCode} \r\n ${response.message}`
+            );
+            throw new Error(`${response.message}`);
+          }
+        })
+        .catch((error) => console.log(error.message));
+    },
+    storeAddProjectUsers: (projectId, newUser) => {
+      fetch(baseURL + "project/users/" + projectId, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          newUser: newUser,
+        }),
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.statusCode < 300) {
+            set({ currentProject: response.content });
+          } else {
+            alert(
+              `Error code: ${response.statusCode} \r\n ${response.message}`
+            );
+            throw new Error(`${response.message}`);
+          }
+        })
+        .catch((error) => console.log(error.message));
     },
   }))
 );

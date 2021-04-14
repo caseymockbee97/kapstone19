@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useStore } from "../store/store";
-import "../assets/addcolumn.css"
-import { Button, Input } from "semantic-ui-react"
+import "../assets/addcolumn.css";
+import { Button, Input } from "semantic-ui-react";
 export default function AddUserComponent(props) {
-  const { userName } = useStore((state) => state.currentProject);
+  const { projectId } = useStore((state) => state.currentProject);
+  const storeAddProjectUsers = useStore((state) => state.storeAddProjectUsers);
   const [newUser, setNewUser] = useState("");
   const handleClick = (e) => {
     e.preventDefault();
-    if (!userName.some((user) => user === newUser) && newUser) {
-      console.log(newUser);
+    if (newUser) {
+      storeAddProjectUsers(projectId, newUser);
     }
     props.addUserButton();
   };
@@ -22,9 +23,12 @@ export default function AddUserComponent(props) {
           placeholder="Add New User"
         />
 
-        <Button onClick={handleClick} positive>Submit</Button>
-        <Button onClick={props.addUserButton} negative>Cancel</Button>
-
+        <Button onClick={handleClick} positive>
+          Submit
+        </Button>
+        <Button onClick={props.addUserButton} negative>
+          Cancel
+        </Button>
       </form>
     </div>
   );
