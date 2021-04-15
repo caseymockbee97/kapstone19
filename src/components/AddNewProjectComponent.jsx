@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Input, Label } from "semantic-ui-react";
 import { useStore } from "../store/store";
+import "../assets/profile.css"
 
 export default function AddNewProjectComponent() {
   const [projectTitle, setProjectTitle] = useState("");
@@ -13,7 +14,7 @@ export default function AddNewProjectComponent() {
     setProjectTitle("");
   };
   return (
-    <div>
+    <div id="pbuttons">
       <form onSubmit={handleClick}>
         <Label>New Project</Label>
         <Input
@@ -21,9 +22,9 @@ export default function AddNewProjectComponent() {
           value={projectTitle}
           onChange={(e) => setProjectTitle(e.target.value)}
           placeholder="Project Title"
-        />
+        /><br />
 
-        <Button onClick={handleClick} positive>
+        <Button id="sub"onClick={handleClick} positive>
           Submit
         </Button>
       </form>
