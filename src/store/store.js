@@ -207,5 +207,99 @@ export const useStore = create(
         })
         .catch((error) => console.log(error.message));
     },
+    storeDeleteColumn: (projectId, columnId) => {
+      fetch(baseURL + "project/column/" + projectId, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          columnId: columnId,
+        }),
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.statusCode < 300) {
+            set({ currentProject: response.content });
+          } else {
+            alert(
+              `Error code: ${response.statusCode} \r\n ${response.message}`
+            );
+            throw new Error(`${response.message}`);
+          }
+        })
+        .catch((error) => console.log(error.message));
+    },
+    storeToggleTodoCompleted: (projectId, boolean, todoId) => {
+      fetch(baseURL + "project/todo/completed/" + projectId, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          boolean: boolean,
+          todoId: todoId,
+        }),
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.statusCode < 300) {
+            set({ currentProject: response.content });
+          } else {
+            alert(
+              `Error code: ${response.statusCode} \r\n ${response.message}`
+            );
+            throw new Error(`${response.message}`);
+          }
+        })
+        .catch((error) => console.log(error.message));
+    },
+    storeDeleteTodo: (projectId, todoId) => {
+      fetch(baseURL + "project/todo/" + projectId, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          todoId: todoId,
+        }),
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.statusCode < 300) {
+            set({ currentProject: response.content });
+          } else {
+            alert(
+              `Error code: ${response.statusCode} \r\n ${response.message}`
+            );
+            throw new Error(`${response.message}`);
+          }
+        })
+        .catch((error) => console.log(error.message));
+    },
+    storeEditTodo: (projectId, text, todoId) => {
+      fetch(baseURL + "project/todo/text/" + projectId, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          text: text,
+          todoId: todoId,
+        }),
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.statusCode < 300) {
+            set({ currentProject: response.content });
+          } else {
+            alert(
+              `Error code: ${response.statusCode} \r\n ${response.message}`
+            );
+            throw new Error(`${response.message}`);
+          }
+        })
+        .catch((error) => console.log(error.message));
+    },
   }))
 );
