@@ -11,26 +11,27 @@ export default function NavBar() {
   return (
     <div id="bar">
       {!user ? (
-        <div id="log">
+      <>
           <Link to="/">
-            <Button>Login</Button>
+          <div id="log">Our Website Name</div>
           </Link>
-        </div>
+      </>
       ) : (
         <>
-          <div id="bb">
-            <Button.Group>
+          <Link to="/">
+            <div id="log">Our Website Name</div>
+          </Link>
+            <div id="bb">
               <Link to="/profile">
-                <Button class="ui button">Profile</Button>
+                <div className="nav">Profile</div>
               </Link>
               <Link to={"/projectBoard/" + projectId}>
-                <Button class="ui button">ProjectBoard</Button>
+                <div className="nav">ProjectBoard</div>
               </Link>
               <Link to="/about">
-                <Button class="ui button">About Us</Button>
-              </Link>{" "}
-            </Button.Group>
-          </div>
+                <div className="nav">About Us</div>
+              </Link>
+            </div>
           <div id="logout">
             <LogoutComponent />
           </div>
