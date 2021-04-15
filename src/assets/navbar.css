@@ -41,7 +41,14 @@
 }
 
 .nav:hover{
-color:black;
-background-color: #a9b8a4;
+    color:black;
+    background-color: #a9b8a4;
 }
+
+.nav:active{
+    color:white;
+}
+
+
+
 
