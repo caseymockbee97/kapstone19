@@ -1,14 +1,76 @@
-import React from "react";
-import { Button } from "semantic-ui-react"
+import React, { useState } from "react";
+import { Button, Form, Input } from "semantic-ui-react";
+import { useStore } from "../store/store";
 
 export default function IndividualTodoComponent(props) {
+  //props
   const { text, id, completed, columnPosition } = props.todo;
+  const projectId = props.projectId;
+
+  //global store
+  const storeToggleTodoCompleted = useStore(
+    (state) => state.storeToggleTodoCompleted
+  );
+  const storeDeleteTodo = useStore((state) => state.storeDeleteTodo);
+  const storeEditTodo = useStore((state) => state.storeEditTodo);
+
+  //local State
+  const [editMode, setEditMode] = useState(false);
+  const [editedTodo, setEditedTodo] = useState(text);
+  //functions
+  const handleToggle = () => {
+    storeToggleTodoCompleted(projectId, !completed, id);
+  };
+  const handleDelete = () => {
+    storeDeleteTodo(projectId, id);
+  };
+  const handleEdit = (e) => {
+    e.preventDefault();
+    storeEditTodo(projectId, editedTodo, id);
+    setEditMode(false);
+  };
   return (
     <div id="itc">
-      <div id="tt">{text}</div>
-      {!completed && <Button>Edit</Button>}<br/>
-      {!completed && <Button negative>Delete</Button>}
-      <Button positive>{completed ? "unDone" : "Done"}</Button>
+      {editMode ? (
+        <Form onSubmit={handleEdit}>
+          <Input
+            id="newinput"
+            value={editedTodo}
+            onChange={(e) => setEditedTodo(e.target.value)}
+            placeholder="New Todo"
+          />
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              setEditMode((prev) => !prev);
+              setEditedTodo(text);
+            }}
+            negative
+          >
+            Cancel
+          </Button>
+          <Button onClick={handleEdit} positive>
+            Edit
+          </Button>
+        </Form>
+      ) : (
+        <div id="tt">{text}</div>
+      )}
+
+      {!completed && (
+        <Button onClick={() => setEditMode((prev) => !prev)}>Edit</Button>
+      )}
+      <br />
+      {!completed && !editMode && (
+        <Button onClick={handleDelete} negative>
+          Delete
+        </Button>
+      )}
+      {!editMode && (
+        <Button onClick={handleToggle} positive>
+          {completed ? "unDone" : "Done"}
+        </Button>
+      )}
     </div>
   );
 }

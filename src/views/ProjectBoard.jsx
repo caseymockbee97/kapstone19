@@ -6,8 +6,8 @@ import AddUserComponent from "../components/AddUserComponent";
 import CompletedColumnComponent from "../components/CompletedColumnComponent";
 import TodoColumnComponent from "../components/TodoColumnComponent";
 import { useStore } from "../store/store";
-import { Button } from "semantic-ui-react"
-import "../assets/projectboard.css"
+import { Button } from "semantic-ui-react";
+import "../assets/projectboard.css";
 
 export default function ProjectBoard() {
   // useStore
@@ -71,15 +71,17 @@ export default function ProjectBoard() {
           {isAddUserClicked && (
             <AddUserComponent addUserButton={addUserButton} />
           )}
-          <div className="columns"style={{ display: "flex" }}>
+          <div className="columns" style={{ display: "flex" }}>
             {currentProject.columnNames.map((obj, i) => (
               <TodoColumnComponent
-                key={`${obj.name}${i}`}
+                key={obj.id}
                 name={obj.name}
+                id={obj.id}
                 columnPosition={i}
+                projectId={projectId}
               />
             ))}
-            <CompletedColumnComponent />
+            <CompletedColumnComponent projectId={projectId} />
           </div>
         </div>
       )}
