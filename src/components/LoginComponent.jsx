@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { Button, Form } from "semantic-ui-react";
 import "../assets/login.css";
 import { useStore } from "../store/store";
@@ -45,6 +46,7 @@ export default function LoginComponent() {
         </div>
       </Form>
       <hr />
+      {user && <Redirect to="/profile" />}
     </div>
   );
 }

@@ -301,5 +301,20 @@ export const useStore = create(
         })
         .catch((error) => console.log(error.message));
     },
+    storeLogout: () => {
+      set({
+        user: "",
+        //all users projects
+        todoProjectBoards: [],
+        //current Projects
+        currentProject: {
+          userName: [],
+          projectTitle: "",
+          columnNames: [],
+          todos: [],
+          projectId: "",
+        },
+      });
+    },
   }))
 );
