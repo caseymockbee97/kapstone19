@@ -6,7 +6,7 @@ import AddUserComponent from "../components/AddUserComponent";
 import CompletedColumnComponent from "../components/CompletedColumnComponent";
 import TodoColumnComponent from "../components/TodoColumnComponent";
 import { useStore } from "../store/store";
-import { Button } from "semantic-ui-react";
+import { Button, Input, Form } from "semantic-ui-react";
 import "../assets/projectboard.css";
 
 export default function ProjectBoard() {
@@ -15,12 +15,17 @@ export default function ProjectBoard() {
   const storeSetCurrentProject = useStore(
     (state) => state.storeSetCurrentProject
   );
+  const storeEditProjectTitle = useStore(
+    (state) => state.storeEditProjectTitle
+  );
   const { projectId } = useParams();
 
   //useState
   const [isNewTodoClicked, setIsNewTodoClicked] = useState(false);
   const [isNewColumnClicked, setIsNewColumnClicked] = useState(false);
   const [isAddUserClicked, setIsAddUserClicked] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [title, setTitle] = useState(currentProject.projectTitle);
 
   //useEffects
   useEffect(() => {
@@ -48,6 +53,15 @@ export default function ProjectBoard() {
     }
     setIsAddUserClicked((prev) => !prev);
   };
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+    if (title) {
+      storeEditProjectTitle(projectId, title);
+      setEditMode(false);
+    }
+  };
+
   return (
     <div id="box">
       {!currentProject.projectTitle && (
@@ -58,7 +72,29 @@ export default function ProjectBoard() {
       )}
       {currentProject.projectTitle && (
         <div id="container">
-          <h1>{currentProject.projectTitle}</h1>
+          {editMode ? (
+            <Form onSubmit={handleEdit}>
+              <Input value={title} onChange={(e) => setTitle(e.target.value)} />
+              <Button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setEditMode(false);
+                  setTitle(currentProject.projectTitle);
+                }}
+                negative
+              >
+                Cancel
+              </Button>
+              <Button onClick={handleEdit} positive>
+                Edit
+              </Button>
+            </Form>
+          ) : (
+            <h1 onClick={() => setEditMode(true)}>
+              {currentProject.projectTitle}
+            </h1>
+          )}
+
           <Button onClick={addTodoButton}>New Todo</Button>
           <Button onClick={addColumnButton}> New Column </Button>
           <Button onClick={addUserButton}> Add User </Button>
