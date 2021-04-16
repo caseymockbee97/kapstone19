@@ -1,7 +1,4 @@
 .pro{
-    /* border-style: solid;
-    border-width: 1px;
-    border-color: black; */
     text-align:center;
     width: 10%;  
     margin:0 auto;
@@ -10,9 +7,6 @@
 }
 #pplist{
     margin:0 auto;
-    /* border-style: solid;
-    border-width: 1px;
-    border-color: black; */
     width: 50%;
     display:flex;
     flex-direction:row;
@@ -22,7 +16,7 @@
     border-style: solid;
     border-width: 1.5px;
     border-color: black;
-    border-radius: 25px;
+    border-radius: 5px;
     padding: 7px;
     margin:10px;
     height:10%;
@@ -30,10 +24,6 @@
 #pbuttons{
     margin:auto;
     width:20%;
-    /* border-style: solid;
-    border-width: 1.5px;
-    border-color: black;
-    border-radius: 25px; */
     text-align: center;
     margin-top: 3%;
     margin-bottom: 3%;

@@ -8,7 +8,7 @@ export default function CompletedColumnComponent(props) {
   return (
     <div className="outside">
       <h2>Completed</h2>
-      <div className="inside">
+      <div id="inside1">
         {todos
           .filter((obj) => obj.completed)
           .map((obj) => (
