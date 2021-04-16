@@ -10,9 +10,9 @@
     border-radius: 25px;
     margin-left: 15px;
     /* margin:0 auto; */
-    height: 500px;
-    margin-top: 50px;
+    height: 100%;
     padding-top: 25px;
+    flex: 0 0 auto;
 }
 #tt{
     border-style: solid;
@@ -28,17 +28,34 @@
     margin:0 auto;
     padding-top: 15px;
 }
-#container{
-    /* margin:0 auto; */
-    padding-left: 50px;
-}
+
 #itc{
     border-style: solid;
     border-width: 1.5px;
     border-color: black;
-    border-radius: 25px;
+    border-radius: 13px;
     padding: 7px;
 }
 #dc{
     height: 55px !important;
+}
+.columns{
+    overflow-x:scroll;
+    display:flex;
+    /* justify-content: center; */
+    width:70%;
+    margin:auto;
+    padding:25px;
+    padding-bottom: 20px;
+    border-style: solid;
+    border-width: 3.5px;
+    border-color: black;
+    border-radius: 45px;
+    flex-wrap:inherit;
+    margin-top: 15px;
+}
+#inside1{
+    height: 430px;
+    width:225px;
+    margin:0 auto;
 }

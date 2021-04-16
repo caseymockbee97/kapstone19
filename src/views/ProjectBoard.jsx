@@ -107,7 +107,7 @@ export default function ProjectBoard() {
           {isAddUserClicked && (
             <AddUserComponent addUserButton={addUserButton} />
           )}
-          <div className="columns" style={{ display: "flex" }}>
+          <div className="columns">
             {currentProject.columnNames.map((obj, i) => (
               <TodoColumnComponent
                 key={obj.id}
