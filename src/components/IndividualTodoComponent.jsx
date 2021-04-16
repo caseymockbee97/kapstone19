@@ -54,12 +54,11 @@ export default function IndividualTodoComponent(props) {
           </Button>
         </Form>
       ) : (
-        <div id="tt">{text}</div>
+        <div onClick={() => setEditMode((prev) => !prev)} id="tt">
+          {text}
+        </div>
       )}
 
-      {!completed && (
-        <Button onClick={() => setEditMode((prev) => !prev)}>Edit</Button>
-      )}
       <br />
       {!completed && !editMode && (
         <Button onClick={handleDelete} negative>

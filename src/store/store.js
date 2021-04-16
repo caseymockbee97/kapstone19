@@ -330,5 +330,52 @@ export const useStore = create(
         .then((res) => res.json())
         .then(get().storeLogout());
     },
+    storeEditColumnTitle: (projectId, columnTitle, columnId) => {
+      fetch(baseURL + "project/column/" + projectId, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          columnTitle: columnTitle,
+          columnId: columnId,
+        }),
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.statusCode < 300) {
+            set({ currentProject: response.content });
+          } else {
+            alert(
+              `Error code: ${response.statusCode} \r\n ${response.message}`
+            );
+            throw new Error(`${response.message}`);
+          }
+        })
+        .catch((error) => console.log(error.message));
+    },
+    storeEditProjectTitle: (projectId, newTitle) => {
+      fetch(baseURL + "project/title/" + projectId, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          newTitle: newTitle,
+        }),
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.statusCode < 300) {
+            set({ currentProject: response.content });
+          } else {
+            alert(
+              `Error code: ${response.statusCode} \r\n ${response.message}`
+            );
+            throw new Error(`${response.message}`);
+          }
+        })
+        .catch((error) => console.log(error.message));
+    },
   }))
 );
