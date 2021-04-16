@@ -219,6 +219,9 @@ export const useStore = create(
         .then((response) => {
           if (response.statusCode < 300) {
             set({ currentProject: response.content });
+            toast.success(`Added ${newUser} to this Project 🤠`, {
+              position: toast.POSITION.BOTTOM_CENTER,
+            });
           } else {
             toast.error(
               `Error code: ${response.statusCode} \r\n ${response.message}`,
