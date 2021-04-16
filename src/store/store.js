@@ -1,7 +1,6 @@
-import { nanoid } from "nanoid";
 import create from "zustand";
 import { devtools } from "zustand/middleware";
-import { db } from "../dummyDb/dummyDb";
+import { toast } from "react-toastify";
 const baseURL = "http://localhost:3000/";
 export const useStore = create(
   devtools((set, get) => ({
@@ -44,10 +43,15 @@ export const useStore = create(
                     projectId: "",
                   },
             });
-            alert("Your sign in was a success");
+            toast.success("Your sign in was a success", {
+              position: toast.POSITION.BOTTOM_CENTER,
+            });
           } else {
-            alert(
-              `Error code: ${response.statusCode} \r\n ${response.message}`
+            toast.warn(
+              `Error code: ${response.statusCode} \r\n ${response.message}`,
+              {
+                position: toast.POSITION.BOTTOM_CENTER,
+              }
             );
             throw new Error(`${response.message}`);
           }
@@ -68,10 +72,15 @@ export const useStore = create(
         .then((res) => res.json())
         .then((response) => {
           if (response.statusCode < 300) {
-            alert(response.message);
+            toast.success(response.message, {
+              position: toast.POSITION.BOTTOM_CENTER,
+            });
           } else {
-            alert(
-              `Error code: ${response.statusCode} \r\n ${response.message}`
+            toast.warn(
+              `Error code: ${response.statusCode} \r\n ${response.message}`,
+              {
+                position: toast.POSITION.BOTTOM_CENTER,
+              }
             );
             throw new Error(`${response.message}`);
           }
@@ -86,8 +95,11 @@ export const useStore = create(
             if (response.statusCode < 300) {
               set({ todoProjectBoards: response.content });
             } else {
-              alert(
-                `Error code: ${response.statusCode} \r\n ${response.message}`
+              toast.error(
+                `Error code: ${response.statusCode} \r\n ${response.message}`,
+                {
+                  position: toast.POSITION.BOTTOM_CENTER,
+                }
               );
               throw new Error(`${response.message}`);
             }
@@ -129,8 +141,11 @@ export const useStore = create(
           if (response.statusCode < 300) {
             get().storeSetProjects();
           } else {
-            alert(
-              `Error code: ${response.statusCode} \r\n ${response.message}`
+            toast.error(
+              `Error code: ${response.statusCode} \r\n ${response.message}`,
+              {
+                position: toast.POSITION.BOTTOM_CENTER,
+              }
             );
             throw new Error(`${response.message}`);
           }
@@ -153,8 +168,11 @@ export const useStore = create(
           if (response.statusCode < 300) {
             set({ currentProject: response.content });
           } else {
-            alert(
-              `Error code: ${response.statusCode} \r\n ${response.message}`
+            toast.error(
+              `Error code: ${response.statusCode} \r\n ${response.message}`,
+              {
+                position: toast.POSITION.BOTTOM_CENTER,
+              }
             );
             throw new Error(`${response.message}`);
           }
@@ -176,8 +194,11 @@ export const useStore = create(
           if (response.statusCode < 300) {
             set({ currentProject: response.content });
           } else {
-            alert(
-              `Error code: ${response.statusCode} \r\n ${response.message}`
+            toast.error(
+              `Error code: ${response.statusCode} \r\n ${response.message}`,
+              {
+                position: toast.POSITION.BOTTOM_CENTER,
+              }
             );
             throw new Error(`${response.message}`);
           }
@@ -199,8 +220,11 @@ export const useStore = create(
           if (response.statusCode < 300) {
             set({ currentProject: response.content });
           } else {
-            alert(
-              `Error code: ${response.statusCode} \r\n ${response.message}`
+            toast.error(
+              `Error code: ${response.statusCode} \r\n ${response.message}`,
+              {
+                position: toast.POSITION.BOTTOM_CENTER,
+              }
             );
             throw new Error(`${response.message}`);
           }
@@ -222,8 +246,11 @@ export const useStore = create(
           if (response.statusCode < 300) {
             set({ currentProject: response.content });
           } else {
-            alert(
-              `Error code: ${response.statusCode} \r\n ${response.message}`
+            toast.error(
+              `Error code: ${response.statusCode} \r\n ${response.message}`,
+              {
+                position: toast.POSITION.BOTTOM_CENTER,
+              }
             );
             throw new Error(`${response.message}`);
           }
@@ -246,8 +273,11 @@ export const useStore = create(
           if (response.statusCode < 300) {
             set({ currentProject: response.content });
           } else {
-            alert(
-              `Error code: ${response.statusCode} \r\n ${response.message}`
+            toast.error(
+              `Error code: ${response.statusCode} \r\n ${response.message}`,
+              {
+                position: toast.POSITION.BOTTOM_CENTER,
+              }
             );
             throw new Error(`${response.message}`);
           }
@@ -269,8 +299,11 @@ export const useStore = create(
           if (response.statusCode < 300) {
             set({ currentProject: response.content });
           } else {
-            alert(
-              `Error code: ${response.statusCode} \r\n ${response.message}`
+            toast.error(
+              `Error code: ${response.statusCode} \r\n ${response.message}`,
+              {
+                position: toast.POSITION.BOTTOM_CENTER,
+              }
             );
             throw new Error(`${response.message}`);
           }
@@ -293,8 +326,11 @@ export const useStore = create(
           if (response.statusCode < 300) {
             set({ currentProject: response.content });
           } else {
-            alert(
-              `Error code: ${response.statusCode} \r\n ${response.message}`
+            toast.error(
+              `Error code: ${response.statusCode} \r\n ${response.message}`,
+              {
+                position: toast.POSITION.BOTTOM_CENTER,
+              }
             );
             throw new Error(`${response.message}`);
           }
@@ -346,8 +382,11 @@ export const useStore = create(
           if (response.statusCode < 300) {
             set({ currentProject: response.content });
           } else {
-            alert(
-              `Error code: ${response.statusCode} \r\n ${response.message}`
+            toast.error(
+              `Error code: ${response.statusCode} \r\n ${response.message}`,
+              {
+                position: toast.POSITION.BOTTOM_CENTER,
+              }
             );
             throw new Error(`${response.message}`);
           }
@@ -369,8 +408,11 @@ export const useStore = create(
           if (response.statusCode < 300) {
             set({ currentProject: response.content });
           } else {
-            alert(
-              `Error code: ${response.statusCode} \r\n ${response.message}`
+            toast.error(
+              `Error code: ${response.statusCode} \r\n ${response.message}`,
+              {
+                position: toast.POSITION.BOTTOM_CENTER,
+              }
             );
             throw new Error(`${response.message}`);
           }
