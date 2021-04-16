@@ -1,5 +1,7 @@
 import "./App.css";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Login from "./views/Login";
 import Profile from "./views/Profile";
 import ProjectBoard from "./views/ProjectBoard";
@@ -29,6 +31,7 @@ function App() {
         </Switch>
         {!user && <Redirect to="/" />}
       </div>
+      <ToastContainer />
     </>
   );
 }
