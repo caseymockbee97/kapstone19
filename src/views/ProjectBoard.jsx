@@ -8,6 +8,7 @@ import TodoColumnComponent from "../components/TodoColumnComponent";
 import { useStore } from "../store/store";
 import { Button, Input, Form } from "semantic-ui-react";
 import "../assets/projectboard.css";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 export default function ProjectBoard() {
   // useStore
@@ -18,6 +19,10 @@ export default function ProjectBoard() {
   const storeEditProjectTitle = useStore(
     (state) => state.storeEditProjectTitle
   );
+  const storeChangeTodoColumn = useStore(
+    (state) => state.storeChangeTodoColumn
+  );
+
   const { projectId } = useParams();
 
   //useState
@@ -59,6 +64,20 @@ export default function ProjectBoard() {
     if (title) {
       storeEditProjectTitle(projectId, title);
       setEditMode(false);
+    }
+  };
+
+  const handleDragEnd = (result) => {
+    console.log(result);
+    if (result.destination) {
+      const draggableId = result.draggableId;
+      const sourceId = result.source.droppableId;
+      const destinationId = result.destination.droppableId;
+      console.log(`source: ${sourceId}`, `destination: ${destinationId}`);
+      if (sourceId !== destinationId) {
+        storeChangeTodoColumn(projectId, parseInt(destinationId), draggableId);
+        //projectId, columnPosition, todoId
+      }
     }
   };
 
@@ -108,15 +127,23 @@ export default function ProjectBoard() {
             <AddUserComponent addUserButton={addUserButton} />
           )}
           <div className="columns">
-            {currentProject.columnNames.map((obj, i) => (
-              <TodoColumnComponent
-                key={obj.id}
-                name={obj.name}
-                id={obj.id}
-                columnPosition={i}
-                projectId={projectId}
-              />
-            ))}
+            <DragDropContext onDragEnd={handleDragEnd}>
+              {currentProject.columnNames.map((obj, i) => (
+                <Droppable key={obj.id} index={i} droppableId={`${i}`}>
+                  {(provided) => (
+                    <div {...provided.droppableProps} ref={provided.innerRef}>
+                      <TodoColumnComponent
+                        name={obj.name}
+                        id={obj.id}
+                        columnPosition={i}
+                        projectId={projectId}
+                        placeHolder={provided.placeholder}
+                      />
+                    </div>
+                  )}
+                </Droppable>
+              ))}
+            </DragDropContext>
             <CompletedColumnComponent projectId={projectId} />
           </div>
         </div>

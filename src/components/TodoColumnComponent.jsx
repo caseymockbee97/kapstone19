@@ -3,6 +3,7 @@ import { useStore } from "../store/store";
 import IndividualTodoComponent from "./IndividualTodoComponent";
 import "../assets/projectboard.css";
 import { Button, Form, Input } from "semantic-ui-react";
+import { Draggable } from "react-beautiful-dnd";
 
 export default function TodoColumnComponent(props) {
   const todos = useStore((state) => state.currentProject.todos);
@@ -49,13 +50,23 @@ export default function TodoColumnComponent(props) {
         {todos
           .filter((obj) => !obj.completed)
           .filter((obj) => obj.columnPosition === props.columnPosition)
-          .map((obj) => (
-            <IndividualTodoComponent
-              key={obj.id}
-              todo={obj}
-              projectId={props.projectId}
-            />
+          .map((obj, i) => (
+            <Draggable key={obj.id} draggableId={obj.id} index={i}>
+              {(provided) => (
+                <div
+                  {...provided.draggableProps}
+                  ref={provided.innerRef}
+                  {...provided.dragHandleProps}
+                >
+                  <IndividualTodoComponent
+                    todo={obj}
+                    projectId={props.projectId}
+                  />
+                </div>
+              )}
+            </Draggable>
           ))}
+        {props.placeHolder}
       </div>
       <div id="dc">
         <Button onClick={handleClick}>Delete Column</Button>

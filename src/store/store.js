@@ -422,5 +422,32 @@ export const useStore = create(
         })
         .catch((error) => console.log(error.message));
     },
+    storeChangeTodoColumn: (projectId, columnPosition, todoId) => {
+      fetch(baseURL + "project/todo/position/" + projectId, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          columnPosition: columnPosition,
+          todoId: todoId,
+        }),
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.statusCode < 300) {
+            set({ currentProject: response.content });
+          } else {
+            toast.error(
+              `Error code: ${response.statusCode} \r\n ${response.message}`,
+              {
+                position: toast.POSITION.BOTTOM_CENTER,
+              }
+            );
+            throw new Error(`${response.message}`);
+          }
+        })
+        .catch((error) => console.log(error.message));
+    },
   }))
 );

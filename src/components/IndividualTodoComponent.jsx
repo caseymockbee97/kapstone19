@@ -58,7 +58,8 @@ export default function IndividualTodoComponent(props) {
           {text}
         </div>
       )}
-
+      <p>Created by: username</p>
+      <p>Date Created: dateGoesHere</p>
       <br />
       {!completed && !editMode && (
         <Button onClick={handleDelete} negative>
