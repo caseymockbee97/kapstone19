@@ -1,10 +1,18 @@
 import React, { useState } from "react";
+import Moment from "react-moment";
 import { Button, Form, Input } from "semantic-ui-react";
 import { useStore } from "../store/store";
 
 export default function IndividualTodoComponent(props) {
   //props
-  const { text, id, completed, columnPosition } = props.todo;
+  const {
+    text,
+    id,
+    completed,
+    columnPosition,
+    createdBy,
+    createdDate,
+  } = props.todo;
   const projectId = props.projectId;
 
   //global store
@@ -58,7 +66,8 @@ export default function IndividualTodoComponent(props) {
           {text}
         </div>
       )}
-
+      <p>Created by: {createdBy}</p>
+      {createdDate && <Moment format="MMM D, YY">{createdDate}</Moment>}
       <br />
       {!completed && !editMode && (
         <Button onClick={handleDelete} negative>

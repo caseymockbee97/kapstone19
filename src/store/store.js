@@ -161,6 +161,7 @@ export const useStore = create(
         body: JSON.stringify({
           text: text,
           columnPosition: columnPosition,
+          username: get().user,
         }),
       })
         .then((res) => res.json())
@@ -404,6 +405,43 @@ export const useStore = create(
         },
         body: JSON.stringify({
           newTitle: newTitle,
+        }),
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.statusCode < 300) {
+            set({ currentProject: response.content });
+          } else {
+            toast.error(
+              `Error code: ${response.statusCode} \r\n ${response.message}`,
+              {
+                position: toast.POSITION.BOTTOM_CENTER,
+              }
+            );
+            throw new Error(`${response.message}`);
+          }
+        })
+        .catch((error) => console.log(error.message));
+    },
+    storeChangeTodoColumn: (projectId, columnPosition, todoId) => {
+      //Sets the position before the api call so the todo doesn't flicker
+      const todoIndex = get().currentProject.todos.findIndex(
+        (todo) => todo.id === todoId
+      );
+      if (todoIndex !== -1) {
+        const tempCurrent = get().currentProject;
+        tempCurrent.todos[todoIndex].columnPosition = columnPosition;
+        set({ currentProject: tempCurrent });
+      }
+      //actually sets position server side
+      fetch(baseURL + "project/todo/position/" + projectId, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          columnPosition: columnPosition,
+          todoId: todoId,
         }),
       })
         .then((res) => res.json())
