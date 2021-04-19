@@ -68,12 +68,10 @@ export default function ProjectBoard() {
   };
 
   const handleDragEnd = (result) => {
-    console.log(result);
     if (result.destination) {
       const draggableId = result.draggableId;
       const sourceId = result.source.droppableId;
       const destinationId = result.destination.droppableId;
-      console.log(`source: ${sourceId}`, `destination: ${destinationId}`);
       if (sourceId !== destinationId) {
         storeChangeTodoColumn(projectId, parseInt(destinationId), draggableId);
         //projectId, columnPosition, todoId
