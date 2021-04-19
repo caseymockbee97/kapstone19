@@ -8,6 +8,7 @@ import ProjectBoard from "./views/ProjectBoard";
 import NavBar from "./components/NavBar";
 import "./App.css";
 import { useStore } from "./store/store";
+import About from "./views/About";
 
 function App() {
   const user = useStore((state) => state.user);
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path="/profile">
             <Profile />
+          </Route>
+          <Route path="/about">
+           <About />  
           </Route>
           <Route exact path="/">
             <Login />
