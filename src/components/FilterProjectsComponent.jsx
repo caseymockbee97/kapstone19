@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "semantic-ui-react";
 import { useStore } from "../store/store";
+import "../assets/profile.css"
 
 export default function FilterProjectsComponent() {
   const storeSetProjects = useStore((state) => state.storeSetProjects);
@@ -28,7 +29,7 @@ export default function FilterProjectsComponent() {
     }
   };
   return (
-    <div>
+    <div id="filter">
       <form>
         <input
           type="radio"
