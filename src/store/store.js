@@ -87,9 +87,14 @@ export const useStore = create(
         })
         .catch((error) => console.log(error.message));
     },
-    storeSetProjects: () => {
+    storeSetProjects: (type, selected) => {
       if (get().user) {
-        fetch(baseURL + "projects/" + get().user)
+        let url = baseURL + "projects/" + get().user;
+        if (type && selected) {
+          url =
+            baseURL + "projects/" + get().user + "?" + type + "=" + selected;
+        }
+        fetch(url)
           .then((res) => res.json())
           .then((response) => {
             if (response.statusCode < 300) {
