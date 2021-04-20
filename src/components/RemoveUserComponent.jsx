@@ -22,7 +22,7 @@ export default function RemoveUserComponent(props) {
           id="newinput"
           value={User}
           onChange={(e) => setUser(e.target.value)}
-          placeholder="Add New User"
+          placeholder="Remove User"
         />
 
         <Button onClick={handleClick} positive>
