@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Button } from "semantic-ui-react";
 import { useStore } from "../store/store";
+import "../assets/projectboard.css"
 
 export default function ProjectDeleteComponent(props) {
   const [isClicked, setIsClicked] = useState(false);
@@ -13,7 +14,7 @@ export default function ProjectDeleteComponent(props) {
     storeDeleteProjectBoard(props.projectId);
   };
   return (
-    <div>
+    <div id="pd">
       {isClicked ? (
         <>
           <Button onClick={() => setIsClicked(false)} positive>

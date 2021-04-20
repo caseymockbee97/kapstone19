@@ -13,11 +13,11 @@ export default function ProjectListComponent() {
     <div id="pplist">
       {toDoProjectBoards.map((toDoProject) => (
         <div key={toDoProject.projectId} className="project">
-          <h2>
+          
             <Link to={"/projectBoard/" + toDoProject.projectId}>
-              {toDoProject.projectTitle}
+            <h3>{toDoProject.projectTitle}</h3>
             </Link>
-          </h2>
+          
         </div>
       ))}
     </div>

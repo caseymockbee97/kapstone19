@@ -16,14 +16,13 @@ export default function AddNewProjectComponent() {
   return (
     <div id="pbuttons">
       <form onSubmit={handleClick}>
-        <Label>New Project</Label>
+      <Label><h3>New Project:</h3></Label>
         <Input
           id="newinput"
           value={projectTitle}
           onChange={(e) => setProjectTitle(e.target.value)}
           placeholder="Project Title"
-        /><br />
-
+        />
         <Button id="sub"onClick={handleClick} positive>
           Submit
         </Button>
