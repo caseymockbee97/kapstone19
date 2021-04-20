@@ -67,7 +67,7 @@ export default function IndividualTodoComponent(props) {
         </div>
       )}
       <p>Created by: {createdBy}</p>
-      {createdDate && <Moment format="MMM D, YY">{createdDate}</Moment>}
+      {createdDate && <Moment format="MMM D, YYYY">{createdDate}</Moment>}
       <br />
       {!completed && !editMode && (
         <Button onClick={handleDelete} negative>
