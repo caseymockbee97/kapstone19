@@ -460,5 +460,62 @@ export const useStore = create(
         })
         .catch((error) => console.log(error.message));
     },
+    storeDeleteProjectBoard: (projectId) => {
+      fetch(baseURL + "project/" + projectId, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.statusCode < 300) {
+            toast.success("Congrats, you deleted the project! 🤠", {
+              position: toast.POSITION.BOTTOM_CENTER,
+            });
+            set({
+              currentProject: {
+                userName: [],
+                projectTitle: "",
+                columnNames: [],
+                todos: [],
+                projectId: "",
+              },
+            });
+          } else {
+            toast.error(
+              `Error code: ${response.statusCode} \r\n ${response.message}`,
+              {
+                position: toast.POSITION.BOTTOM_CENTER,
+              }
+            );
+            throw new Error(`${response.message}`);
+          }
+        })
+        .catch((error) => console.log(error.message));
+    },
+    storeDeleteProjectUsers: (projectId, user) => {
+      fetch(baseURL + "project/users/" + projectId, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user: user,
+        }),
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          if (response.statusCode < 300) {
+            set({ currentProject: response.content });
+          } else {
+            toast.error(
+              `Error code: ${response.statusCode} \r\n ${response.message}`,
+              {
+                position: toast.POSITION.BOTTOM_CENTER,
+              }
+            );
+            throw new Error(`${response.message}`);
+          }
+        })
+        .catch((error) => console.log(error.message));
+    },
   }))
 );

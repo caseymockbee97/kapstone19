@@ -9,6 +9,8 @@ import { useStore } from "../store/store";
 import { Button, Input, Form } from "semantic-ui-react";
 import "../assets/projectboard.css";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import ProjectDeleteComponent from "../components/ProjectDeleteComponent";
+import RemoveUserComponent from "../components/RemoveUserComponent";
 
 export default function ProjectBoard() {
   // useStore
@@ -29,6 +31,7 @@ export default function ProjectBoard() {
   const [isNewTodoClicked, setIsNewTodoClicked] = useState(false);
   const [isNewColumnClicked, setIsNewColumnClicked] = useState(false);
   const [isAddUserClicked, setIsAddUserClicked] = useState(false);
+  const [isRemoveUserClicked, setIsRemoveUserClicked] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [title, setTitle] = useState(currentProject.projectTitle);
 
@@ -57,6 +60,12 @@ export default function ProjectBoard() {
       e.preventDefault();
     }
     setIsAddUserClicked((prev) => !prev);
+  };
+  const removeUserButton = (e) => {
+    if (e) {
+      e.preventDefault();
+    }
+    setIsRemoveUserClicked((prev) => !prev);
   };
 
   const handleEdit = (e) => {
@@ -115,6 +124,7 @@ export default function ProjectBoard() {
           <Button onClick={addTodoButton}>New Todo</Button>
           <Button onClick={addColumnButton}> New Column </Button>
           <Button onClick={addUserButton}> Add User </Button>
+          <Button onClick={removeUserButton}>Remove User</Button>
           {isNewTodoClicked && (
             <AddTodoComponent addTodoButton={addTodoButton} />
           )}
@@ -123,6 +133,9 @@ export default function ProjectBoard() {
           )}
           {isAddUserClicked && (
             <AddUserComponent addUserButton={addUserButton} />
+          )}
+          {isRemoveUserClicked && (
+            <RemoveUserComponent removeUserButton={removeUserButton} />
           )}
           <div className="columns">
             <DragDropContext onDragEnd={handleDragEnd}>
@@ -144,6 +157,7 @@ export default function ProjectBoard() {
             </DragDropContext>
             <CompletedColumnComponent projectId={projectId} />
           </div>
+          <ProjectDeleteComponent projectId={projectId} />
         </div>
       )}
     </div>
