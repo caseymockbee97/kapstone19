@@ -10,6 +10,7 @@ import "./App.css";
 import { useStore } from "./store/store";
 import About from "./views/About";
 import Footer from "./views/Footer";
+import Fof from "./components/Fof";
 
 function App() {
   const user = useStore((state) => state.user);
@@ -34,6 +35,9 @@ function App() {
           <Route exact path="/">
             <Login />
           </Route>
+          <Route path="*">
+             <Fof />
+            </Route>
         </Switch>
         {!user && <Redirect to="/" />}
         </div>
