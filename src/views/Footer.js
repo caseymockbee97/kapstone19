@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom"; 
 import "../assets/footer.css"
 
 const Footer = () => {
@@ -23,7 +24,7 @@ const Footer = () => {
                         <ul className="list-unstyled">
                             <div>CONTACT INFORMATION :</div>
                             <div>555-277-1234</div>
-                            <div>SomethingInc@gmail.com</div>
+                            <div><Link to="/email">Getitdone@finished.com</Link></div>
                             <div>987 F street, NorthEast</div>
                             <div>Washington D.C 20002</div>
                         </ul>
