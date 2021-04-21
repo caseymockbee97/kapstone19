@@ -71,15 +71,6 @@ export default function About() {
                       </ul>
                     </div>
         
-
-
-  
-  
-  <footer>
-    <div>
-      <p>&copy; Copyrights ToDoList.com All rights reserved.</p>
-    </div>
-  </footer>
         </div>
        
         
