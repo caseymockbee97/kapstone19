@@ -1,7 +1,7 @@
 import create from "zustand";
 import { devtools } from "zustand/middleware";
 import { toast } from "react-toastify";
-const baseURL = "http://localhost:3000/";
+const baseURL = "https://kapstone19-.glitch.me/";
 export const useStore = create(
   devtools((set, get) => ({
     // current users name
