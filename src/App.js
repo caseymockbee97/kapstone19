@@ -9,12 +9,14 @@ import NavBar from "./components/NavBar";
 import "./App.css";
 import { useStore } from "./store/store";
 import About from "./views/About";
+import Footer from "./views/Footer";
 
 function App() {
   const user = useStore((state) => state.user);
   return (
     <>
       <div className="main">
+        <div className="content-wrap">
         <NavBar />
         <Switch>
           {/* <Route path="/logout">
@@ -34,6 +36,8 @@ function App() {
           </Route>
         </Switch>
         {!user && <Redirect to="/" />}
+        </div>
+        <Footer />
       </div>
       <ToastContainer />
     </>
