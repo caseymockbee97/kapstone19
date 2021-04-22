@@ -10,7 +10,7 @@ import "./App.css";
 import { useStore } from "./store/store";
 import About from "./views/About";
 import Footer from "./views/Footer";
-import Fof from "./components/Fof";
+import Fof from "./components/FofComponent";
 
 function App() {
   const user = useStore((state) => state.user);
@@ -18,28 +18,25 @@ function App() {
     <>
       <div className="main">
         <div className="content-wrap">
-        <NavBar />
-        <Switch>
-          {/* <Route path="/logout">
-      <Logout /> 
-    </Route> */}
-          <Route path="/projectBoard/:projectId">
-            <ProjectBoard />
-          </Route>
-          <Route path="/profile">
-            <Profile />
-          </Route>
-          <Route path="/about">
-           <About />  
-          </Route>
-          <Route exact path="/">
-            <Login />
-          </Route>
-          <Route path="*">
-             <Fof />
+          <NavBar />
+          <Switch>
+            <Route path="/projectBoard/:projectId">
+              <ProjectBoard />
             </Route>
-        </Switch>
-        {!user && <Redirect to="/" />}
+            <Route path="/profile">
+              <Profile />
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route exact path="/">
+              <Login />
+            </Route>
+            <Route path="*">
+              <Fof />
+            </Route>
+          </Switch>
+          {!user && <Redirect to="/" />}
         </div>
         <Footer />
       </div>

@@ -5,14 +5,7 @@ import { useStore } from "../store/store";
 
 export default function IndividualTodoComponent(props) {
   //props
-  const {
-    text,
-    id,
-    completed,
-    columnPosition,
-    createdBy,
-    createdDate,
-  } = props.todo;
+  const { text, id, completed, createdBy, createdDate } = props.todo;
   const projectId = props.projectId;
 
   //global store

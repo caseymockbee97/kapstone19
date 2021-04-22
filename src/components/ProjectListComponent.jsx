@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useStore } from "../store/store";
 import "../assets/profile.css";
-// Things to display: A list of project titles from global store.
 export default function ProjectListComponent() {
   const toDoProjectBoards = useStore((state) => state.todoProjectBoards);
   const storeSetProjects = useStore((state) => state.storeSetProjects);
@@ -13,11 +12,9 @@ export default function ProjectListComponent() {
     <div id="pplist">
       {toDoProjectBoards.map((toDoProject) => (
         <div key={toDoProject.projectId} className="project">
-          
-            <Link to={"/projectBoard/" + toDoProject.projectId}>
+          <Link to={"/projectBoard/" + toDoProject.projectId}>
             <h3>{toDoProject.projectTitle}</h3>
-            </Link>
-          
+          </Link>
         </div>
       ))}
     </div>
