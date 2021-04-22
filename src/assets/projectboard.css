@@ -3,6 +3,7 @@ h1 {
 }
 #board {
   text-align: center;
+  position: relative;
 }
 .outside {
   text-align: center;
@@ -12,7 +13,6 @@ h1 {
   width: 250px;
   border-radius: 25px;
   margin-left: 15px;
-  /* margin:0 auto; */
   height: 100%;
   padding-top: 25px;
   flex: 0 0 auto;
@@ -30,7 +30,6 @@ h1 {
   height: 375px;
   width: 225px;
   margin: 0 auto;
-  padding-top: 15px;
   overflow-y: scroll;
   color: white;
 }

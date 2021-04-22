@@ -1,45 +1,43 @@
 import React from 'react';
 import {Link} from "react-router-dom"; 
 import "../assets/footer.css"
+import Facebook from "../assets/facebook.jpg"
+import Insta from "../assets/ig-logo-email.jpg"
+import Skype from "../assets/skype.jpg"
+import Youtube from "../assets/utube.jpg"
 
 const Footer = () => {
     return(
         <div className='main-footer'>
+
             <div className="footer-container">
             <hr />
                 <div className="row">
-                    {/*Column1*/}
                     <div className="col">
-
-                        <ul className="list-unstyled">
-                            <li> <img src="https://image.flaticon.com/icons/svg/174/174869.svg" width="60px" alt=""/></li>
-                            <li><img src="https://image.flaticon.com/icons/svg/174/174848.svg" width="60px" alt=""/></li>
-                            <li><img src="https://www.flaticon.com/svg/vstatic/svg/1409/1409946.svg?token=exp=1619010146~hmac=139a683ca90e2c0859c2b12541a7da90" width="60px" alt=""/></li>
-                            <li><img src="https://www.flaticon.com/svg/vstatic/svg/124/124015.svg?token=exp=1619010501~hmac=ba6acebed39d03bc90b5eb72acf55bc0" width="60px" alt=""/></li>
-                        </ul>
+                    <div className="item1"><img src={Facebook} alt=""/></div>
+                    <div className="item1"><img src={Insta} alt=""/></div>
+                    <div className="item1"><img src={Skype} alt=""/></div>
+                    <div className="item1"><img src={Youtube} alt=""/></div>     
                     </div>
-                    {/*Column1*/}
+                    <br />
+
                     <div className="col">
-                     
-                        <ul className="list-unstyled">
-                            <div>CONTACT INFORMATION :</div>
-                            <div>555-277-1234</div>
-                            <div><Link to="/email">Getitdone@finished.com</Link></div>
-                            <div>987 F street, NorthEast</div>
-                            <div>Washington D.C 20002</div>
-                        </ul>
+                            <div className="item"><p>CONTACT INFORMATION :</p></div>
+                            <div className="item"><p>555-277-1234</p></div>
+                            <div className="item"><Link to="/email"><p>Getitdone@finished.com</p></Link></div>
+                            <div className="item"><p>987 F street, NorthEast</p></div>
+                            <div className="item"><p>Washington D.C 20002</p></div>
                     </div>
                 </div>
                 <hr />
-                <div className="row">
+                {/* <div className="row">
                     <p className="col-sm">
                         &copy;{new Date().getFullYear()} SOMETHING INC | All rights reserved | Terms of Service | Privacy 
 
                     </p>
-                </div>
+                </div> */}
             </div>
-            
-        </div>
+             </div>
     );
 };
 
