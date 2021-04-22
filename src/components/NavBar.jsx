@@ -13,13 +13,13 @@ export default function NavBar() {
       {!user ? (
         <>
           <Link to="/">
-            <div id="log">Our Website Name</div>
+            <div id="log">getItDone.js</div>
           </Link>
         </>
       ) : (
         <>
           <Link to="/">
-            <div id="log">Our Website Name</div>
+            <div id="log">getItDone.js</div>
           </Link>
           <div id="bb">
             <Link to="/profile">
