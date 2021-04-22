@@ -15,6 +15,8 @@ export default function Profile() {
       <FilterProjectsComponent />
       <ProjectListComponent />
       <UserDeleteComponent />
+      {/* Included to fix the footer to the bottom of the page. */}
+      <div style={{ height: "500px" }}></div>
     </div>
   );
 }
