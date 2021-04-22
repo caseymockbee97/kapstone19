@@ -509,6 +509,9 @@ export const useStore = create(
         .then((res) => res.json())
         .then((response) => {
           if (response.statusCode < 300) {
+            toast.success(`${user} was removed from the project! 🤠`, {
+              position: toast.POSITION.BOTTOM_CENTER,
+            });
             set({ currentProject: response.content });
           } else {
             toast.error(

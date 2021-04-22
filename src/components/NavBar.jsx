@@ -11,27 +11,27 @@ export default function NavBar() {
   return (
     <div id="bar">
       {!user ? (
-      <>
+        <>
           <Link to="/">
-          <div id="log">Our Website Name</div>
+            <div id="log">Our Website Name</div>
           </Link>
-      </>
+        </>
       ) : (
         <>
           <Link to="/">
             <div id="log">Our Website Name</div>
           </Link>
-            <div id="bb">
-              <Link to="/profile">
-                <div className="nav">Profile</div>
-              </Link>
-              <Link to={"/projectBoard/" + projectId}>
-                <div className="nav">ProjectBoard</div>
-              </Link>
-              <Link to="/about">
-                <div className="nav">About Us</div>
-              </Link>
-            </div>
+          <div id="bb">
+            <Link to="/profile">
+              <div className="nav">Profile</div>
+            </Link>
+            <Link to={"/projectBoard/" + projectId}>
+              <div className="nav">Current Project</div>
+            </Link>
+            <Link to="/about">
+              <div className="nav">About Us</div>
+            </Link>
+          </div>
           <div id="logout">
             <LogoutComponent />
           </div>
