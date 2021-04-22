@@ -4,9 +4,7 @@ import "../assets/addcolumn.css";
 import { Button, Input } from "semantic-ui-react";
 
 export default function AddTodoComponent(props) {
-  const { columnNames, userName, projectId } = useStore(
-    (state) => state.currentProject
-  );
+  const { columnNames, projectId } = useStore((state) => state.currentProject);
   const storeAddNewTodo = useStore((state) => state.storeAddNewTodo);
   const [newTodo, setNewTodo] = useState("");
   const [column, setColumn] = useState("");

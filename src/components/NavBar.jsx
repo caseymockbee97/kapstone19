@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "semantic-ui-react";
 import "../assets/navbar.css";
 import { useStore } from "../store/store";
 import LogoutComponent from "./LogoutComponent";

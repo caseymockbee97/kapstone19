@@ -6,15 +6,15 @@
 
 [x] Component Library
 
-[] No obvious visual bugs
+[x] No obvious visual bugs
 
 ## Well organized structure - 5 points
 
-[] Well organized
+[x] Well organized
 
-[] Logical hierarchy
+[x] Logical hierarchy
 
-[] Components do what the name suggests
+[x] Components do what the name suggests
 
 ## Implement GET, POST, PUT/PATCH, DELETE - 10 points
 
@@ -42,7 +42,7 @@
 
 [] Connects to an actual database
 
-[] 2 of either sorting, searching, or filtering on the backend
+[x] 2 of either sorting, searching, or filtering on the backend
 
 [] react storybook implementation 5 components
 
