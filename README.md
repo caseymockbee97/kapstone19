@@ -1,6 +1,6 @@
 # Link to Deployed Site:
 
-https://ike1990.github.io/kapstone19
+https://caseymockbee97.github.io/kapstone19
 
 ## refs
 
