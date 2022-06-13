@@ -1,14 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "../assets/navbar.css";
-import { useStore } from "../store/store";
-import LogoutComponent from "./LogoutComponent";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import '../assets/navbar.css';
+import { useStore } from '../store/store';
+import LogoutComponent from './LogoutComponent';
 
 export default function NavBar() {
   const projectId = useStore((state) => state.currentProject.projectId);
   const user = useStore((state) => state.user);
   return (
-    <div id="bar">
+    <div className="nav-bar" id="bar">
       {!user ? (
         <>
           <Link to="/">
@@ -24,7 +24,7 @@ export default function NavBar() {
             <Link to="/profile">
               <div className="nav">Profile</div>
             </Link>
-            <Link to={"/projectBoard/" + projectId}>
+            <Link to={'/projectBoard/' + projectId}>
               <div className="nav">Current Project</div>
             </Link>
             <Link to="/about">
